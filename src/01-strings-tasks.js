@@ -54,7 +54,6 @@ function getStringLength(value) {
 function getStringFromTemplate(firstName, lastName) {
   return `Hello, ${firstName} ${lastName}!`;
 }
-console.log(getStringFromTemplate('Jonh', 'Doe'));
 /**
  * Extracts a name from template string 'Hello, First_Name Last_Name!'.
  *
@@ -68,8 +67,6 @@ console.log(getStringFromTemplate('Jonh', 'Doe'));
 function extractNameFromTemplate(value) {
   return value.slice(7, -1);
 }
-
-console.log(extractNameFromTemplate('Hello, John Doe!'));
 
 
 /**
@@ -131,7 +128,6 @@ function repeatString(value, count) {
 function removeFirstOccurrences(str, value) {
   return str.replace(value, '');
 }
-console.log(removeFirstOccurrences('I like legends', 'end'));
 /**
  * Remove the first and last angle brackets from tag string
  *
@@ -177,8 +173,8 @@ function convertToUpperCase(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -204,8 +200,14 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const str = '─';
+  const str2 = ' ';
+  const str3 = `│${str2.repeat(width - 2)}│\n`;
+  if (width > 1 && height > 1) {
+    return `┌${str.repeat(width - 2)}┐\n${str3.repeat(height - 2)}└${str.repeat(width - 2)}┘\n`;
+  }
+  return str;
 }
 
 
@@ -225,10 +227,12 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const abc = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM';
+  const re = /[a-zA-Z]/g;
+  return str.replace(re, (letter) => abc[abc.indexOf(letter) + 13]);
 }
-
+// console.log(encodeToRot13('Gb trg gb gur bgure fvqr!'));
 /**
  * Returns true if the value is string; otherwise false.
  * @param {string} value
@@ -242,8 +246,8 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return (value instanceof String || typeof value === 'string');
 }
 
 
@@ -271,8 +275,12 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const arr = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return arr.indexOf(value);
 }
 
 
