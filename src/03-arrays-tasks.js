@@ -209,16 +209,12 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  // return arr.map((n) => n.join(',') + '\n').toString();
-  throw Error;
+function toCsvText(arr) {
+  const arr2 = arr.map((n) => `${n.join(',')}\n`);
+  const arr3 = arr2.join('').slice(0, -1);
+  return arr3;
 }
-/* console.log(toCsvText([
-[  0, 1, 2, 3, 4 ],
-[ 10,11,12,13,14 ],
-[ 20,21,22,23,24 ],
-[ 30,31,32,33,34 ]
-])); */
+
 /**
  * Transforms the numeric array into the according array of squares:
  *   f(x) = x * x
@@ -230,8 +226,8 @@ function toCsvText(/* arr */) {
  *   [ 0, 1, 2, 3, 4, 5 ] => [ 0, 1, 4, 9, 16, 25 ]
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
-function toArrayOfSquares(/* arr */) {
-  throw new Error('Not implemented');
+function toArrayOfSquares(arr) {
+  return arr.map((n) => n ** 2);
 }
 
 
@@ -249,8 +245,10 @@ function toArrayOfSquares(/* arr */) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  const arr2 = arr.slice(0, 1);
+  const arr3 = [];
+  return arr3.concat(arr2, arr.map((n, i) => arr[i + 1] = arr[i + 1] + arr[i]).slice(0, -1));//eslint-disable-line
 }
 
 /**
