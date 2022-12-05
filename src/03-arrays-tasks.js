@@ -47,7 +47,7 @@ function findElement(arr, value) {
 function generateOdds(len) {
   const arr = [];
   arr.length = len;
-  return arr.fill(0).map((n, i) => n = i * 2 + 1);
+  return arr.fill(0).map((n, i) => n = i * 2 + 1); //eslint-disable-line
 }
 
 
