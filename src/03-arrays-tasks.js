@@ -262,8 +262,8 @@ function getMovingSum(arr) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  return arr.filter((_, i) => (i + 1) % 2 === 0);
 }
 
 
@@ -281,10 +281,28 @@ function getSecondItems(/* arr */) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
-}
 
+/* function propagateItemsByPositionIndex(arr) {
+  const arr1 = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    for (let j = 1; j <= i + 1; j += 1) {
+      arr1.push(arr[i]);
+    }
+  }
+  return arr1;
+} */
+
+function propagateItemsByPositionIndex(arr) {
+  let arr1 = [];
+  const arr2 = [];
+  arr.map((n, i) => {
+    arr1 = [];
+    arr1.length = i + 1;
+    arr1.fill(n);
+    return arr2.push(arr1.fill(n));
+  });
+  return arr2.flat();
+}
 
 /**
  * Returns the 3 largest numbers from the specified array
@@ -299,10 +317,9 @@ function propagateItemsByPositionIndex(/* arr */) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  return arr.slice(-3).sort((a, b) => a < b);
 }
-
 
 /**
  * Returns the number of positive numbers from specified array
@@ -313,14 +330,14 @@ function get3TopItems(/* arr */) {
  * @example
  *   [ ]          => 0
  *   [ -1, 0, 1 ] => 1
- *   [ 1, 2, 3]   => 3
+ *   [1, 2, 3]   => 3
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  return arr.filter((n) => typeof n === 'number').filter((n) => n > 0).length;
 }
-
+// console.log(getPositivesCount([-1,0,1]));
 /**
  * Sorts digit names
  *
@@ -334,8 +351,9 @@ function getPositivesCount(/* arr */) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const str1 = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => str1.indexOf(a) - str1.indexOf(b));
 }
 
 /**
@@ -350,8 +368,8 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+function getItemsSum(arr) {
+  return arr.reduce((a, b) => a + b, 0);
 }
 
 /**
@@ -366,10 +384,10 @@ function getItemsSum(/* arr */) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  return arr.filter((n) => !!n === false).length;
 }
-
+// console.log(getFalsyValuesCount([ 1, '', 3 ]));
 /**
  * Returns a number of all occurrences of the specified item in an array
  *
